@@ -18,7 +18,8 @@ const constants =
         BOOK_FOUND: "No such book found",
         EDIT_BOOK: "Cannot edit book details",
         BOOK_DELETE: "Cannot delete Book",
-        JWT_TOKEN: "Could not create Token"
+        JWT_TOKEN: "Could not create Token",
+        EDIT_USER: "Cannot Edit Book"
     },
     USER:
     {

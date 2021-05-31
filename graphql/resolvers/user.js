@@ -88,6 +88,37 @@ module.exports =
             }
             throw new AuthenticationError( constants.ERROR.INVALID_CREDENTIALS );
         },
+
+        editUser: async ( root, args, { user = null } ) =>
+        {
+
+            //validating the fields that user wants to update
+            if ( args.input.firstName )
+            {
+                UserValidation.validateFirstName( args.input );
+            }
+            if ( args.input.lastName )
+            {
+                UserValidation.validateLastName( args.input );
+            }
+
+            //checking for user logged in
+            if ( !user )
+            {
+                throw new AuthenticationError( constants.ERROR.LOGIN_USER );
+            }
+
+            //if user exists then we edit the user details 
+            const userUpdatedInfo = await sequelizeQueries.editUser( args.input, user );
+
+            //if edit user is a success then we send the response
+            if ( userUpdatedInfo )
+            {
+                return userUpdatedInfo.dataValues;
+            }
+
+            throw new AuthenticationError( constants.ERROR.EDIT_USER );
+        }
     }
 
 };

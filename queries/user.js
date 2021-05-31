@@ -53,4 +53,29 @@ const fetchAllUsers = async () =>
     }
 };
 
-module.exports = { createUser, findUser, fetchAllUsers };
+const editUser = async ( editUserData, user ) =>
+{
+
+    try
+    {
+        const { email } = user;
+        const userCredentials = await findUser( user );
+        if ( userCredentials )
+        {
+            const userUpdated = await User.update( editUserData, { where: { email } } );
+
+            if ( userUpdated )
+            {
+                const updatedInfo = await findUser( user );
+
+                return updatedInfo;
+            }
+        }
+    }
+    catch ( err )
+    {
+        throw new Error( constants.ERROR.USER_FOUND );
+    }
+}
+
+module.exports = { createUser, findUser, fetchAllUsers, editUser };

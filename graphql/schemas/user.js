@@ -21,6 +21,7 @@ module.exports = gql`
     {
         register(input:RegisterInput!) : AuthPayload
         login(input:LoginInput!): AuthPayload
+        editUser(input:EditUserInput!): RegisterResponse
     }
 
     input RegisterInput
@@ -36,6 +37,13 @@ module.exports = gql`
     {
         email:String!
         password:String!
+    }
+
+    input EditUserInput
+    {
+        email:String!
+        lastName:String
+        firstName:String
     }
 
     type AuthPayload
