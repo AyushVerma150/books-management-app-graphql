@@ -12,7 +12,6 @@ const rootType = gql`
  type Mutation {
      root: String!
  }
-
 `;
 
 module.exports = [rootType, userType, bookType];

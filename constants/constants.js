@@ -30,7 +30,8 @@ const constants =
         PASSWORD: "Please enter a password with lowercase , uppercase , digits and symbols",
         FIRST_NAME: "Please enter a valid first name",
         LAST_NAME: "Please enter a valid last name",
-        PASSWORD_MISMATCH: "Passwords do not match"
+        PASSWORD_MISMATCH: "Passwords do not match",
+        ISBN: "Not a valid ISBN code"
     }
 };
 

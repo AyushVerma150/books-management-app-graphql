@@ -2,7 +2,7 @@ const userSequelizeQueries = require( "../queries/user" );
 const constants = require( "../constants/constants" );
 
 const Book = require( "../models/book" );
-const User = require( "../models/user" );
+
 
 const addBook = async ( { title, published, overview, pages, publishingCompany, isbn10, cost }, { email } ) =>
 {

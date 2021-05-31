@@ -12,8 +12,8 @@ const createUser = async ( { firstName, lastName, email, password } ) =>
                 lastName,
                 email,
                 password
-            }
-        );
+            } );
+
         return userCredentials;
     }
     catch ( err )
@@ -28,18 +28,10 @@ const findUser = async ( { email } ) =>
     {
         const userCredentials = await User.findOne(
             {
-                where:
-                {
-                    email
-                },
-                include:
-                {
-                    model: Book,
-                    attributes: constants.USER.BOOK_ATTRIBUTES
-                }
+                where: { email },
+                include: { model: Book, attributes: constants.USER.BOOK_ATTRIBUTES }
+            } );
 
-            }
-        );
         return userCredentials;
     }
     catch ( err )
@@ -59,11 +51,6 @@ const fetchAllUsers = async () =>
     {
         throw new Error( constants.ERROR.USER_FOUND );
     }
-}
-
-
-
-
-
+};
 
 module.exports = { createUser, findUser, fetchAllUsers };
