@@ -1,20 +1,29 @@
+//lib imports
 require( 'dotenv' ).config();
 const jwt = require( 'jsonwebtoken' );
 const argon2 = require( "argon2" );
 
+//errors
+const { AuthenticationError } = require( 'apollo-server-express' )
 
+//constants
+const constants = require( "../constants/constants" );
 
+//create JSON WEB TOKEN
 const createAuthenticationToken = ( email ) =>
 {
     try
     {
-        return jwt.sign( { email }, process.env.TOKEN_SECRET, { expiresIn: "1h" } );
+        return jwt.sign(
+            { email },
+            process.env.TOKEN_SECRET,
+            { expiresIn: process.env.EXPIRES_IN }
+        );
     }
     catch ( err )
     {
-        console.log( "Could not generate web token" );
+        throw new AuthenticationError( constants.ERROR.JWT_TOKEN )
     }
-
 };
 
 const encryptPassword = async ( password ) =>
@@ -26,7 +35,7 @@ const encryptPassword = async ( password ) =>
     }
     catch ( err )
     {
-        console.log( "Could not hash password" );
+        throw new AuthenticationError( constants.ERROR.HASH_PASSWORD )
     }
 };
 
@@ -40,7 +49,7 @@ const comparePasswords = async ( hashedPassword, inputPassword ) =>
     }
     catch ( err )
     {
-        console.log( "Could not hash password" );
+        throw new AuthenticationError( constants.VALIDATION.PASSWORD_MISMATCH );
     }
 }
 

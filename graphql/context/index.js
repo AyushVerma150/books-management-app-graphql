@@ -3,6 +3,8 @@ const User = require( '../../models/user' );
 const jwt = require( 'jsonwebtoken' );
 const { AuthenticationError } = require( 'apollo-server-express' )
 
+
+//we verify the JWT token that was created either at signup or at login...
 const verifyToken = async ( token ) =>
 {
     try

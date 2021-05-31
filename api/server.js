@@ -1,26 +1,19 @@
+//lib imports
+const cors = require( 'cors' );
 const express = require( 'express' );
 const { createServer } = require( 'http' );
 const { ApolloServer } = require( 'apollo-server-express' );
-const cors = require( 'cors' );
+const app = express();
+
+//imports for GraphQl Schema
 const typeDefs = require( '../graphql/schemas' );
 const resolvers = require( '../graphql/resolvers' );
 const context = require( '../graphql/context' );
-const app = express();
-// const User = require( '../models/user' );
-// const Book = require( '../models/book' );
-const sequelize = require( '../helpers/database' );
 
-try
-{
-    sequelize.sync();
-}
-catch ( err )
-{
-    console.log( err );
-}
-
+//applying CORS
 app.use( cors() );
 
+//creating GraphQl Playground
 const apolloServer = new ApolloServer( {
     typeDefs,
     resolvers,
@@ -33,6 +26,7 @@ const apolloServer = new ApolloServer( {
     },
 } );
 
+//path to playground
 apolloServer.applyMiddleware( { app, path: '/api' } );
 
 const server = createServer( app );

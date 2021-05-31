@@ -1,4 +1,7 @@
+//lib imports
 const { gql } = require( 'apollo-server-express' );
+
+//clustering all Schemas
 const userType = require( './user' );
 const bookType = require( "./book" );
 

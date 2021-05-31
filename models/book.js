@@ -1,8 +1,11 @@
-
+//lib imports
 const Sequelize = require( 'sequelize' );
 
+//sequelize instance
 const sequelize = require( '../helpers/database' );
 
+
+// Book Model
 const Book = sequelize.define( 'book',
     {
         id: {

@@ -2,8 +2,6 @@ const User = require( '../models/user' );
 const Book = require( "../models/book" );
 const constants = require( "../constants/constants" );
 
-
-
 const createUser = async ( { firstName, lastName, email, password } ) =>
 {
     try
@@ -37,7 +35,7 @@ const findUser = async ( { email } ) =>
                 include:
                 {
                     model: Book,
-                    attributes: ["id", "title", "overview", "publishingCompany", "published", "cost", "isbn10", "pages"]
+                    attributes: constants.USER.BOOK_ATTRIBUTES
                 }
 
             }
